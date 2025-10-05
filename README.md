@@ -1,4 +1,12 @@
 # LinkedIn Sentiment Assistant
+##⚠️ Disclaimer
+
+This project is provided for educational and personal use only.
+I do not promote or encourage spam, automation abuse, or any activity that violates LinkedIn’s Terms of Service
+.
+
+The LinkedIn Sentiment Assistant is intended solely to assist with genuine, responsible engagement and professional networking.
+Use this tool at your own discretion and always ensure compliance with platform rules.
 
 A smart Chrome extension that analyzes LinkedIn posts with AI-powered sentiment detection and provides automated engagement features.
 <img width="339" height="250" alt="image" src="https://github.com/user-attachments/assets/9223f181-a83d-438c-8647-83d2b6898d7c" />
