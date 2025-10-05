@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>LinkedIn Assistant</title>
+    <style>
+        body { min-width:320px; max-width:400px; font-family:system-ui,Segoe UI,Arial,sans-serif; padding:12px; margin:0; }
+        .header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+        .header h3 { margin:0; font-size:16px; }
+        .tabs { display:flex; border-bottom:1px solid #e5e7eb; margin-bottom:12px; }
+        .tab { padding:8px 12px; cursor:pointer; border:none; background:none; font-size:12px; color:#6b7280; }
+        .tab.active { color:#111; border-bottom:2px solid #111; }
+        .tab-content { display:none; }
+        .tab-content.active { display:block; }
+        .scan-section { text-align:center; padding:20px 0; }
+        .scan-btn { background:#111; color:white; border:none; padding:10px 20px; border-radius:8px; cursor:pointer; font-size:14px; }
+        .scan-btn:hover { background:#374151; }
+        .status { font-size:12px; color:#6b7280; margin-top:8px; }
+        .liked-posts { max-height:300px; overflow-y:auto; }
+        .post-item { background:#f9fafb; border-radius:8px; padding:10px; margin-bottom:8px; border-left:3px solid #e5e7eb; }
+        .post-item.positive { border-left-color:#10b981; }
+        .post-item.negative { border-left-color:#ef4444; }
+        .post-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+        .post-author { font-weight:600; font-size:12px; color:#111; }
+        .post-time { font-size:11px; color:#6b7280; }
+        .post-text { font-size:12px; color:#374151; line-height:1.4; }
+        .post-sentiment { font-size:11px; padding:2px 6px; border-radius:12px; background:#e5e7eb; color:#6b7280; margin-top:6px; display:inline-block; }
+        .clear-btn { background:#ef4444; color:white; border:none; padding:6px 12px; border-radius:6px; font-size:11px; cursor:pointer; }
+        .empty-state { text-align:center; padding:40px 20px; color:#6b7280; font-size:12px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h3>LinkedIn Assistant</h3>
+        <button id="options-btn" style="background:#f3f4f6; border:1px solid #d1d5db; padding:6px 12px; border-radius:6px; font-size:12px; cursor:pointer; color:#374151;">Options</button>
+    </div>
+    
+    <div class="tabs">
+        <button class="tab active" data-tab="control">Control</button>
+        <button class="tab" data-tab="history">History</button>
+        <button class="tab" data-tab="learning">Learning</button>
+    </div>
+    
+    <div id="control-tab" class="tab-content active">
+        <div class="scan-section">
+            <div style="display:flex; gap:8px; justify-content:center; margin-bottom:12px; flex-wrap:wrap;">
+                <button id="start" class="scan-btn" style="background:#10b981;">Start Auto-Like</button>
+                <button id="stop" class="scan-btn" style="background:#ef4444;">Stop Auto-Like</button>
+            </div>
+            <p id="status" class="status">Click "Start Auto-Like" to begin scrolling and liking posts.</p>
+            <p style="font-size:11px; color:#6b7280; margin-top:12px;">🧠 Auto-learning enabled • Like rate: 1 per 5s</p>
+        </div>
+    </div>
+    
+    <div id="history-tab" class="tab-content">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <span style="font-size:14px; font-weight:600;">Liked Posts</span>
+            <button id="clear-history" class="clear-btn">Clear</button>
+        </div>
+        <div id="liked-posts" class="liked-posts">
+            <div class="empty-state">No liked posts yet</div>
+        </div>
+    </div>
+    
+    <div id="learning-tab" class="tab-content">
+        <div style="margin-bottom:12px;">
+            <span style="font-size:14px; font-weight:600;">Auto-Learning Data</span>
+        </div>
+        
+        <div id="learning-stats" style="background:#f9fafb; border-radius:8px; padding:12px; margin-bottom:12px; font-size:12px;">
+            <div style="margin-bottom:6px;"><strong>Like Buttons Learned:</strong> <span id="like-count">0</span></div>
+            <div style="margin-bottom:6px;"><strong>Already-Liked Patterns:</strong> <span id="liked-count">0</span></div>
+            <div style="margin-bottom:6px;"><strong>Repost Patterns:</strong> <span id="repost-count">0</span></div>
+            <div style="color:#6b7280; font-size:11px; margin-top:8px;">Data is stored locally on this browser profile</div>
+        </div>
+        
+        <div style="display:flex; gap:8px; flex-direction:column;">
+            <button id="export-learning" style="background:#3b82f6; color:white; border:none; padding:8px 12px; border-radius:6px; font-size:12px; cursor:pointer;">📥 Export Learning Data</button>
+            <button id="import-learning" style="background:#10b981; color:white; border:none; padding:8px 12px; border-radius:6px; font-size:12px; cursor:pointer;">📤 Import Learning Data</button>
+            <button id="clear-learning" style="background:#ef4444; color:white; border:none; padding:8px 12px; border-radius:6px; font-size:12px; cursor:pointer;">🗑️ Clear Learning Data</button>
+        </div>
+        
+        <input type="file" id="import-file" accept=".json" style="display:none;">
+        
+        <p style="font-size:11px; color:#6b7280; margin-top:12px; line-height:1.5;">
+            Export your learning data to transfer it to other Chrome profiles, computers, or as a backup.
+        </p>
+    </div>
+    
+    
+    <script src="popup.js"></script>
+</body>
+</html>

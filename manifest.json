@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "LinkedIn Sentiment Assistant",
+    "description": "Shows sentiment + draft comments on LinkedIn posts (assistive mode by default).",
+    "version": "0.1.0",
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "LinkedIn Assistant"
+    },
+    "options_page": "options_new.html",
+    "permissions": [
+        "storage",
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://www.linkedin.com/*",
+        "http://*/*",
+        "https://*/*"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.linkedin.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "overlay_new.css"
+            ],
+            "run_at": "document_end"
+        }
+    ]
+}

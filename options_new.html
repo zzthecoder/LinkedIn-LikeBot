@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>Assistant Options</title></head>
+<body style="font:14px/1.4 system-ui,Segoe UI,Arial,sans-serif;padding:16px;max-width:680px;">
+<h2>LinkedIn Assistant — Options</h2>
+<label><input type="checkbox" id="autoAct" checked> Enable auto‑actions (Like clicks) — <b>NOW ENABLED BY DEFAULT</b></label>
+<p style="color:#666;">Extension automatically likes ALL posts except toxic content. No sentiment analysis required - likes immediately after detection. Comments are completely filtered out. Rate limited to 1 action per 2 seconds.</p>
+
+<h3>Optional remote API</h3>
+<p>Provide a backend <code>/score</code> endpoint to replace the built‑in sentiment. It should accept <code>{ text }</code> and return <code>{ label, score }</code>.</p>
+<input id="apiBase" style="width:100%;" placeholder="https://your-backend.example.com">
+
+<div style="margin-top:12px;">
+<button id="save">Save</button>
+<span id="msg" style="margin-left:8px;color:#090;"></span>
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>
